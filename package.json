@@ -8,9 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next build",
-    "serve": "npx serve out",
-    "export:docs": "npm run build  && mv out docs",
-    "deploy": "gh-pages -d docs"
+    "serve": "npx serve out"
   },
   "dependencies": {
     "react": "19.1.0",
