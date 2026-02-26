@@ -3,60 +3,65 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
+const screenshots = [
+  {
+    title: "Prayer Times & Logging",
+    description:
+      "See accurate prayer times with countdown, log each prayer in one tap as On Time, Late, or Missed, and track your daily streak.",
+    image: "/screenshots/new/home_screen.png",
+  },
+  {
+    title: "Prayer Analytics",
+    description:
+      "Visualize your spiritual journey with streaks, completion rates, punctuality stats, and your best days — over 7, 30, or all-time windows.",
+    image: "/screenshots/new/performance_screen.png",
+  },
+  {
+    title: "Nearby Mosques",
+    description:
+      "Discover mosques around you with distance, walking time, and one-tap directions. See which ones are open right now.",
+    image: "/screenshots/new/nearby_mosques.png",
+  },
+  {
+    title: "Qibla Compass",
+    description:
+      "Always know the direction to the Holy Kaaba with the built-in Qibla compass. Accurate to your exact location.",
+    image: "/screenshots/new/qibla_finder.png",
+  },
+  {
+    title: "Community",
+    description:
+      "Join local groups, see group streaks and member activity, and stay motivated with your community. Optional sign-in only.",
+    image: "/screenshots/new/community_screen.png",
+  },
+  {
+    title: "Group Activity",
+    description:
+      "See your group feed, participate in challenges, track rankings, and inspire each other to stay consistent.",
+    image: "/screenshots/new/groups_screen.png",
+  },
+];
+
 export default function ScreenshotsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const screenshots = [
-    {
-      title: "Prayer Tracking",
-      description:
-        "Log each of your five daily prayers in one tap. See timestamps, statuses (on-time, late, missed) and build healthy habits over time.",
-      image: "/screenshots/home_screen_dark.png",
-    },
-    {
-      title: "Mosque Finder",
-      description:
-        "Discover nearby mosques with live prayer times, distance estimates, and directions—perfect for when you’re on the go.",
-      image: "/screenshots/nearByMosque_dark.png",
-    },
-    {
-      title: "Prayer Analytics",
-      description:
-        "Visualize your performance with streaks, completion rates, and your best days over 7, 30 or all-time windows—insights that motivate you forward.",
-      image: "/screenshots/prayer_analytics_dark.png",
-    },
-    {
-      title: "Knowledge Hub",
-      description:
-        "Access curated ayahs and hadiths tied to each prayer. Deepen your understanding with authentic sources and daily reflections.",
-      image: "/screenshots/prayer_analytics_2_dark.png",
-    },
-  ];
 
   const nextSlide = () =>
     setCurrentIndex((prev) => (prev + 1) % screenshots.length);
   const prevSlide = () =>
-    setCurrentIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
+    setCurrentIndex(
+      (prev) => (prev - 1 + screenshots.length) % screenshots.length
+    );
 
   return (
-    <section className="gradient-bg py-20">
+    <section className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--color-primary)]">
             See Sakinah in Action
           </h2>
           <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-            Explore how Sakinah empowers your daily prayers—track, discover, and grow with confidence.
+            Explore how Sakinah empowers your daily prayers — track, discover, and grow with confidence.
           </p>
-
-          <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm sakinah-rounded p-6 mt-8 max-w-2xl mx-auto shadow-sm">
-            <blockquote className="text-lg italic text-gray-800 dark:text-gray-200 mb-4">
-              “Prayer is the key to Paradise.”
-            </blockquote>
-            <cite className="text-[var(--color-primary)] font-semibold">
-              — Sunan An-Nasa’i 1036
-            </cite>
-          </div>
         </div>
 
         {/* Carousel */}
@@ -76,12 +81,14 @@ export default function ScreenshotsSection() {
             <button
               onClick={prevSlide}
               className="absolute top-1/2 left-4 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm w-12 h-12 sakinah-rounded shadow-md flex items-center justify-center hover:bg-white dark:hover:bg-gray-700 transition-colors"
+              aria-label="Previous screenshot"
             >
               ←
             </button>
             <button
               onClick={nextSlide}
               className="absolute top-1/2 right-4 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm w-12 h-12 sakinah-rounded shadow-md flex items-center justify-center hover:bg-white dark:hover:bg-gray-700 transition-colors"
+              aria-label="Next screenshot"
             >
               →
             </button>
@@ -103,6 +110,7 @@ export default function ScreenshotsSection() {
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
+                aria-label={`Go to screenshot ${idx + 1}`}
                 className={`w-3 h-3 rounded-full transition-colors ${
                   idx === currentIndex
                     ? 'bg-[var(--color-primary)]'
@@ -116,12 +124,17 @@ export default function ScreenshotsSection() {
         {/* Download Buttons */}
         <div className="text-center mt-12">
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="sakinah-primary sakinah-rounded text-white px-8 py-4 font-semibold text-lg hover:bg-[#0d4429] transition-colors shadow-sm">
+            <a
+              href="https://apps.apple.com/us/app/sakinah-prayer-companion/id6748843314"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="sakinah-primary sakinah-rounded text-white px-8 py-4 font-semibold text-lg hover:bg-[#0d4429] transition-colors shadow-sm"
+            >
               Download for iOS
-            </button>
-            <button className="sakinah-secondary sakinah-rounded text-white px-8 py-4 font-semibold text-lg hover:bg-[#157347] transition-colors shadow-sm">
-              Download for Android
-            </button>
+            </a>
+            <span className="sakinah-secondary sakinah-rounded text-white/70 px-8 py-4 font-semibold text-lg opacity-60 cursor-default">
+              Android Coming Soon
+            </span>
           </div>
         </div>
       </div>

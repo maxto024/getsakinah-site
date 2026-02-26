@@ -1,8 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function InsightsSection() {
+  const [heatmap, setHeatmap] = useState<number[]>(() => Array(35).fill(0));
+
+  useEffect(() => {
+    setHeatmap(Array.from({ length: 35 }, () => Math.floor(Math.random() * 4)));
+  }, []);
   return (
     <section className="gradient-bg py-20">
       <div className="container mx-auto px-6">
@@ -72,8 +77,7 @@ export default function InsightsSection() {
 
             {/* Heatmap */}
             <div className="grid grid-cols-7 gap-1 mb-8">
-              {Array.from({ length: 35 }, (_, i) => {
-                const level = Math.floor(Math.random() * 4);
+              {heatmap.map((level, i) => {
                 const classes = [
                   'bg-gray-200 dark:bg-gray-700',
                   'bg-[var(--color-primary)]/30',
